@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports | NexusPOS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   
+    <div class="sidebar p-3" style="width: 250px;">
+        <div class="text-center mb-4">
+            <img src="https://via.placeholder.com/150" alt="Company Logo" class="img-fluid rounded-circle mb-2" style="width: 80px; height: 80px; object-fit: cover;">
+            <h5 id="companyNameDisplay">PFU Point of Sale</h5>
+            <small class="text-white-50">Admin Dashboard</small>
+        </div>
+        <hr class="bg-light">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.html" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stores.html" data-section="stores">
+                    <i class="fas fa-store"></i> <span>Stores</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="users.html" data-section="users">
+                    <i class="fas fa-users-cog"></i> <span>Users</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="categories.html" data-section="categories">
+                    <i class="fas fa-tags"></i> <span>Item Categories</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="products.html" data-section="products">
+                    <i class="fas fa-boxes"></i> <span>Products</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="sales.html" data-section="sales">
+                    <i class="fas fa-shopping-cart"></i> <span>Sales</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stock.html" data-section="stock">
+                    <i class="fas fa-warehouse"></i> <span>Stock</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="invoices.html" data-section="invoices">
+                    <i class="fas fa-file-invoice-dollar"></i> <span>Invoices</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reports.html" data-section="reports">
+                    <i class="fas fa-chart-pie"></i> <span>Reports</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="debtors.html" data-section="debtors">
+                    <i class="fas fa-hand-holding-usd"></i> <span>Debtors</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <button class="mobile-menu-btn d-lg-none">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h4 class="page-title">Reports</h4>
+            <div class="d-flex">
+                <div class="search-box me-2">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="form-control" placeholder="Search reports...">
+                </div>
+                <select class="form-select form-select-sm" style="width: 150px;">
+                    <option>Last 7 Days</option>
+                    <option>This Month</option>
+                    <option>Last Month</option>
+                    <option>Custom Range</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <i class="fas fa-chart-line me-2"></i> Sales Report
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="salesChart"></canvas>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-sm btn-outline-primary">View Details</button>
+                            <button class="btn btn-sm btn-primary ms-2">Export</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <i class="fas fa-boxes me-2"></i> Inventory Report
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="inventoryChart"></canvas>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-sm btn-outline-primary">View Details</button>
+                            <button class="btn btn-sm btn-primary ms-2">Export</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <i class="fas fa-users me-2"></i> Customer Report
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="customerChart"></canvas>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-sm btn-outline-primary">View Details</button>
+                            <button class="btn btn-sm btn-primary ms-2">Export</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Detailed Transaction Report</span>
+                <div>
+                    <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-file-export me-1"></i> Export to Excel
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Invoice #</th>
+                                <th>Customer</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2023-10-15</td>
+                                <td>INV-1001</td>
+                                <td>John Doe</td>
+                                <td>3</td>
+                                <td>$245.00</td>
+                                <td>Credit Card</td>
+                                <td><span class="badge bg-success">Completed</span></td>
+                            </tr>
+                            <!-- More rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="main.js"></script>
+    <script>
+        // Initialize charts
+        document.addEventListener('DOMContentLoaded', function() {
+            const salesCtx = document.getElementById('salesChart').getContext('2d');
+            new Chart(salesCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Sales',
+                        data: [1200, 1900, 1500, 2000, 2500, 2200],
+                        backgroundColor: 'rgba(92, 149, 248, 0.2)',
+                        borderColor: 'rgba(92, 149, 248, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            // Initialize other charts similarly...
+        });
+    </script>
+</body>
+</html>

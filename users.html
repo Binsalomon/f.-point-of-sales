@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - PFU Point of Sale</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+     <div class="sidebar p-3" style="width: 250px;">
+        <div class="text-center mb-4">
+            <img src="https://via.placeholder.com/150" alt="Company Logo" class="img-fluid rounded-circle mb-2" style="width: 80px; height: 80px; object-fit: cover;">
+            <h5 id="companyNameDisplay">PFU Point of Sale</h5>
+            <small class="text-white-50">Admin Dashboard</small>
+        </div>
+        <hr class="bg-light">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.html" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stores.html" data-section="stores">
+                    <i class="fas fa-store"></i> <span>Stores</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="users.html" data-section="users">
+                    <i class="fas fa-users-cog"></i> <span>Users</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="categories.html" data-section="categories">
+                    <i class="fas fa-tags"></i> <span>Item Categories</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="products.html" data-section="products">
+                    <i class="fas fa-boxes"></i> <span>Products</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="sales.html" data-section="sales">
+                    <i class="fas fa-shopping-cart"></i> <span>Sales</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stock.html" data-section="stock">
+                    <i class="fas fa-warehouse"></i> <span>Stock</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="invoices.html" data-section="invoices">
+                    <i class="fas fa-file-invoice-dollar"></i> <span>Invoices</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reports.html" data-section="reports">
+                    <i class="fas fa-chart-pie"></i> <span>Reports</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="debtors.html" data-section="debtors">
+                    <i class="fas fa-hand-holding-usd"></i> <span>Debtors</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h2 class="page-title">Users Management</h2>
+            <div class="d-flex align-items-center">
+                <div class="search-box me-3">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="form-control" placeholder="Search users...">
+                </div>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                    <i class="fas fa-plus me-2"></i>Add User
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">All Users</h5>
+                <div>
+                    <button class="btn btn-sm btn-outline-primary me-2">
+                        <i class="fas fa-file-export me-1"></i> Export
+                    </button>
+                    <button class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-filter me-1"></i> Filter
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Store</th>
+                                <th>Status</th>
+                                <th>Last Login</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>US001</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" width="30" height="30">
+                                        <span>Admin User</span>
+                                    </div>
+                                </td>
+                                <td>admin@example.com</td>
+                                <td><span class="badge bg-danger">Admin</span></td>
+                                <td>All Stores</td>
+                                <td><span class="badge bg-success">Active</span></td>
+                                <td>Today, 10:30 AM</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary action-btn" data-bs-toggle="tooltip" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger action-btn" data-bs-toggle="tooltip" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info action-btn" data-bs-toggle="tooltip" title="Reset Password">
+                                        <i class="fas fa-key"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>US002</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" width="30" height="30">
+                                        <span>Manager User</span>
+                                    </div>
+                                </td>
+                                <td>manager@example.com</td>
+                                <td><span class="badge bg-warning text-dark">Manager</span></td>
+                                <td>Main Branch</td>
+                                <td><span class="badge bg-success">Active</span></td>
+                                <td>Today, 09:15 AM</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary action-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger action-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info action-btn">
+                                        <i class="fas fa-key"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>US003</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" width="30" height="30">
+                                        <span>Cashier User</span>
+                                    </div>
+                                </td>
+                                <td>cashier@example.com</td>
+                                <td><span class="badge bg-primary">Cashier</span></td>
+                                <td>North Branch</td>
+                                <td><span class="badge bg-success">Active</span></td>
+                                <td>Yesterday, 05:45 PM</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary action-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger action-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info action-btn">
+                                        <i class="fas fa-key"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>US004</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" width="30" height="30">
+                                        <span>Inventory User</span>
+                                    </div>
+                                </td>
+                                <td>inventory@example.com</td>
+                                <td><span class="badge bg-info">Inventory</span></td>
+                                <td>Main Branch</td>
+                                <td><span class="badge bg-success">Active</span></td>
+                                <td>Yesterday, 03:20 PM</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary action-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger action-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info action-btn">
+                                        <i class="fas fa-key"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>US005</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" width="30" height="30">
+                                        <span>Disabled User</span>
+                                    </div>
+                                </td>
+                                <td>disabled@example.com</td>
+                                <td><span class="badge bg-secondary">Cashier</span></td>
+                                <td>West Branch</td>
+                                <td><span class="badge bg-danger">Disabled</span></td>
+                                <td>1 week ago</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary action-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger action-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info action-btn">
+                                        <i class="fas fa-key"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add User Modal -->
+        <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="userEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="userEmail" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="userPhone" class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="userPhone" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="userRole" class="form-label">Role</label>
+                                    <select class="form-select" id="userRole" required>
+                                        <option value="">Select Role</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="manager">Manager</option>
+                                        <option value="cashier">Cashier</option>
+                                        <option value="inventory">Inventory</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="userStore" class="form-label">Assigned Store</label>
+                                    <select class="form-select" id="userStore" required>
+                                        <option value="">Select Store</option>
+                                        <option value="all">All Stores</option>
+                                        <option value="main">Main Branch</option>
+                                        <option value="north">North Branch</option>
+                                        <option value="west">West Branch</option>
+                                        <option value="east">East Branch</option>
+                                        <option value="south">South Branch</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="userPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="userPassword" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="userPhoto" class="form-label">Profile Photo</label>
+                                <input class="form-control" type="file" id="userPhoto">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Create User</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - PFU Point of Sale</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    
+ <div class="sidebar p-3" style="width: 250px;">
+        <div class="text-center mb-4">
+            <img src="https://via.placeholder.com/150" alt="Company Logo" class="img-fluid rounded-circle mb-2" style="width: 80px; height: 80px; object-fit: cover;">
+            <h5 id="companyNameDisplay">PFU Point of Sale</h5>
+            <small class="text-white-50">Admin Dashboard</small>
+        </div>
+        <hr class="bg-light">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.html" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stores.html" data-section="stores">
+                    <i class="fas fa-store"></i> <span>Stores</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="users.html" data-section="users">
+                    <i class="fas fa-users-cog"></i> <span>Users</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="categories.html" data-section="categories">
+                    <i class="fas fa-tags"></i> <span>Item Categories</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="products.html" data-section="products">
+                    <i class="fas fa-boxes"></i> <span>Products</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="sales.html" data-section="sales">
+                    <i class="fas fa-shopping-cart"></i> <span>Sales</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stock.html" data-section="stock">
+                    <i class="fas fa-warehouse"></i> <span>Stock</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="invoices.html" data-section="invoices">
+                    <i class="fas fa-file-invoice-dollar"></i> <span>Invoices</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reports.html" data-section="reports">
+                    <i class="fas fa-chart-pie"></i> <span>Reports</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="debtors.html" data-section="debtors">
+                    <i class="fas fa-hand-holding-usd"></i> <span>Debtors</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h2 class="page-title">Products Management</h2>
+            <div class="d-flex align-items-center">
+                <div class="search-box me-3">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="form-control" placeholder="Search products...">
+                </div>
+                <div class="btn-group me-3">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-filter me-1"></i> Filter
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">All Products</a></li>
+                        <li><a class="dropdown-item" href="#">In Stock</a></li>
+                        <li><a class="dropdown-item" href="#">Out of Stock</a></li>
+                        <li><a class="dropdown-item" href="#">Low Stock</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">By Category</a></li>
+                    </ul>
+                </div>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                    <i class="fas fa-plus me-2"></i>Add Product
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">All Products</h5>
+                <div>
+                    <button class="btn btn-sm btn-outline-primary me-2">
+                        <i class="fas fa-file-export me-1"></i> Export
+                    </button>
+                    <button class="btn btn-sm btn-outline-primary me-2">
+                        <i class="fas fa-file-import me-1"></i> Import
+                    </button>
+                    <button class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-barcode me-1"></i> Print Barcodes
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Product</th>
+                                <th>SKU/Barcode</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://via.placeholder.com/40" class="rounded me-2" width="40" height="40">
+                                        <div>
+                                            <h6 class="mb-0">iPhone 13 Pro</h6>
+                                            <small class="text-muted">Apple</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>IP13PRO-256</td>
+                                <td>Smartphones</td>
+                                <td>$999.00</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 75%"></div>
+                                    </div>
+                                    <small>15/20</small>
+                                </td>
+                                <td><span class="badge bg-success">Active</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary action-btn" data-bs-toggle="tooltip" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger action-btn" data-bs-toggle="tooltip" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info action-btn" data-bs-toggle="tooltip" title="View">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://via.placeholder.com/40" class="rounded me-2" width="40" height="40">
+                                        <div>
+                                            <h6 class="mb-0">MacBook Pro 14"</h6>
+                                            <small class="text-muted">Apple</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>MBP14-M1</td>
+                                <td>Laptops</td>
+                                <td>$1,999.00</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: 30%"></div>
+                                    </div>
+                                    <small>3/10</small>
+                                </td>
+                                <td><span class="badge bg-success">Active</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary action-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger action-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info action-btn">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://via.placeholder.com/40" class="rounded me-2" width="40" height="40">
+                                        <div>
+                                            <h6 class="mb-0">AirPods Pro</h6>
+                                            <small class="text-muted">Apple</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>AP-PRO-2</td>
+                                <td>Accessories</td>
+                                <td>$249.00</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-danger" style="width: 5%"></div>
+                                    </div>
+                                    <small>1/20</small>
+                                </td>
+                                <td><span class="badge bg-success">Active</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary action-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger action-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info action-btn">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://via.placeholder.com/40" class="rounded me-2" width="40" height="40">
+                                        <div>
+                                            <h6 class="mb-0">Samsung Galaxy S22</h6>
+                                            <small class="text-muted">Samsung</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>SG-S22-128</td>
+                                <td>Smartphones</td>
+                                <td>$799.00</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 60%"></div>
+                                    </div>
+                                    <small>12/20</small>
+                                </td>
+                                <td><span class="badge bg-success">Active</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary action-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger action-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info action-btn">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://via.placeholder.com/40" class="rounded me-2" width="40" height="40">
+                                        <div>
+                                            <h6 class="mb-0">Nike Air Max</h6>
+                                            <small class="text-muted">Nike</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>NK-AM-2022</td>
+                                <td>Shoes</td>
+                                <td>$150.00</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 90%"></div>
+                                    </div>
+                                    <small>18/20</small>
+                                </td>
+                                <td><span class="badge bg-success">Active</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary action-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger action-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info action-btn">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://via.placeholder.com/40" class="rounded me-2" width="40" height="40">
+                                        <div>
+                                            <h6 class="mb-0">Levi's 501 Jeans</h6>
+                                            <small class="text-muted">Levi's</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>LV-501-BL</td>
+                                <td>Clothing</td>
+                                <td>$69.99</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 100%"></div>
+                                    </div>
+                                    <small>25/25</small>
+                                </td>
+                                <td><span class="badge bg-success">Active</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary action-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger action-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info action-btn">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://via.placeholder.com/40" class="rounded me-2" width="40" height="40">
+                                        <div>
+                                            <h6 class="mb-0">Sony WH-1000XM4</h6>
+                                            <small class="text-muted">Sony</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>SN-WH-XM4</td>
+                                <td>Accessories</td>
+                                <td>$349.99</td>
+                                <td>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: 20%"></div>
+                                    </div>
+                                    <small>2/10</small>
+                                </td>
+                                <td><span class="badge bg-warning text-dark">Low Stock</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary action-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger action-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info action-btn">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Product Modal -->
+        <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="productName" class="form-label">Product Name</label>
+                                    <input type="text" class="form-control" id="productName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="productSKU" class="form-label">SKU/Barcode</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="productSKU" required>
+                                        <button class="btn btn-outline-secondary" type="button" id="generateBarcode">
+                                            <i class="fas fa-barcode"></i> Generate
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="productCategory" class="form-label">Category</label>
+                                    <select class="form-select" id="productCategory" required>
+                                        <option value="">Select Category</option>
+                                        <option value="1">Electronics</option>
+                                        <option value="2">Clothing</option>
+                                        <option value="3">Accessories</option>
+                                        <option value="4">Shoes</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="productBrand" class="form-label">Brand</label>
+                                    <input type="text" class="form-control" id="productBrand">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="productCost" class="form-label">Cost Price</label>
+                                    <input type="number" step="0.01" class="form-control" id="productCost" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="productPrice" class="form-label">Selling Price</label>
+                                    <input type="number" step="0.01" class="form-control" id="productPrice" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="productTax" class="form-label">Tax Rate</label>
+                                    <select class="form-select" id="productTax">
+                                        <option value="0">No Tax</option>
+                                        <option value="5">5%</option>
+                                        <option value="10">10%</option>
+                                        <option value="15">15%</option>
+                                        <option value="20">20%</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="productQuantity" class="form-label">Initial Quantity</label>
+                                    <input type="number" class="form-control" id="productQuantity" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="productAlert" class="form-label">Alert Quantity</label>
+                                    <input type="number" class="form-control" id="productAlert" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productDescription" class="form-label">Description</label>
+                                <textarea class="form-control" id="productDescription" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productImage" class="form-label">Product Images</label>
+                                <input class="form-control" type="file" id="productImage" multiple>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Product Options</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="trackInventory">
+                                    <label class="form-check-label" for="trackInventory">
+                                        Track Inventory
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="hasVariants">
+                                    <label class="form-check-label" for="hasVariants">
+                                        This product has variants (size, color, etc.)
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Save Product</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoices | NexusPOS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+ <div class="sidebar p-3" style="width: 250px;">
+        <div class="text-center mb-4">
+            <img src="https://via.placeholder.com/150" alt="Company Logo" class="img-fluid rounded-circle mb-2" style="width: 80px; height: 80px; object-fit: cover;">
+            <h5 id="companyNameDisplay">PFU Point of Sale</h5>
+            <small class="text-white-50">Admin Dashboard</small>
+        </div>
+        <hr class="bg-light">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.html" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stores.html" data-section="stores">
+                    <i class="fas fa-store"></i> <span>Stores</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="users.html" data-section="users">
+                    <i class="fas fa-users-cog"></i> <span>Users</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="categories.html" data-section="categories">
+                    <i class="fas fa-tags"></i> <span>Item Categories</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="products.html" data-section="products">
+                    <i class="fas fa-boxes"></i> <span>Products</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="sales.html" data-section="sales">
+                    <i class="fas fa-shopping-cart"></i> <span>Sales</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stock.html" data-section="stock">
+                    <i class="fas fa-warehouse"></i> <span>Stock</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="invoices.html" data-section="invoices">
+                    <i class="fas fa-file-invoice-dollar"></i> <span>Invoices</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reports.html" data-section="reports">
+                    <i class="fas fa-chart-pie"></i> <span>Reports</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="debtors.html" data-section="debtors">
+                    <i class="fas fa-hand-holding-usd"></i> <span>Debtors</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <button class="mobile-menu-btn d-lg-none">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h4 class="page-title">Invoice Management</h4>
+            <div class="d-flex">
+                <div class="search-box me-2">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="form-control" placeholder="Search invoices...">
+                </div>
+                <button class="btn btn-primary">
+                    <i class="fas fa-plus me-1"></i> New Invoice
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>All Invoices</span>
+                <div class="btn-group">
+                    <button class="btn btn-sm btn-outline-secondary">All</button>
+                    <button class="btn btn-sm btn-outline-secondary">Paid</button>
+                    <button class="btn btn-sm btn-outline-secondary">Unpaid</button>
+                    <button class="btn btn-sm btn-outline-secondary">Overdue</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Invoice #</th>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>INV-2023-1001</td>
+                                <td>2023-10-15</td>
+                                <td>John Doe</td>
+                                <td>$245.00</td>
+                                <td>2023-10-30</td>
+                                <td><span class="badge bg-success">Paid</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip" title="View">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="tooltip" title="Print">
+                                        <i class="fas fa-print"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" data-bs-toggle="tooltip" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>INV-2023-1002</td>
+                                <td>2023-10-16</td>
+                                <td>Jane Smith</td>
+                                <td>$189.50</td>
+                                <td>2023-10-31</td>
+                                <td><span class="badge bg-warning">Unpaid</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary">
+                                        <i class="fas fa-print"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- More rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

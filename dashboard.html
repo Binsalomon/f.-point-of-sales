@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PFU Point of Sale System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Dashboard -->
+    <div class="d-flex" id="main-dashboard">
+
+     <div class="sidebar p-3" style="width: 250px;">
+        <div class="text-center mb-4">
+            <img src="https://via.placeholder.com/150" alt="Company Logo" class="img-fluid rounded-circle mb-2" style="width: 80px; height: 80px; object-fit: cover;">
+            <h5 id="companyNameDisplay">PFU Point of Sale</h5>
+            <small class="text-white-50">Admin Dashboard</small>
+        </div>
+        <hr class="bg-light">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.html" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stores.html" data-section="stores">
+                    <i class="fas fa-store"></i> <span>Stores</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="users.html" data-section="users">
+                    <i class="fas fa-users-cog"></i> <span>Users</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="categories.html" data-section="categories">
+                    <i class="fas fa-tags"></i> <span>Item Categories</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="products.html" data-section="products">
+                    <i class="fas fa-boxes"></i> <span>Products</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="sales.html" data-section="sales">
+                    <i class="fas fa-shopping-cart"></i> <span>Sales</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stock.html" data-section="stock">
+                    <i class="fas fa-warehouse"></i> <span>Stock</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="invoices.html" data-section="invoices">
+                    <i class="fas fa-file-invoice-dollar"></i> <span>Invoices</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reports.html" data-section="reports">
+                    <i class="fas fa-chart-pie"></i> <span>Reports</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="debtors.html" data-section="debtors">
+                    <i class="fas fa-hand-holding-usd"></i> <span>Debtors</span>
+                </a>
+            </li>
+            
+    </div>
+
+        <!-- Main Content -->
+        <div class="main-content flex-grow-1">
+            <!-- Top Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+                <div class="container-fluid">
+                   
+                    <div class="d-flex align-items-center">
+                        <div class="dropdown me-3">
+                            <button class="btn btn-link dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell"></i>
+                                <span class="notification-badge">3</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
+                                <li><h6 class="dropdown-header">Notifications</h6></li>
+                                <li><a class="dropdown-item" href="#">New sale recorded</a></li>
+                                <li><a class="dropdown-item" href="#">Low stock alert</a></li>
+                                <li><a class="dropdown-item" href="#">New user registered</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-primary" href="#">View all</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://via.placeholder.com/40" alt="User" class="user-avatar me-2">
+                                <span>Admin User</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#" data-section="profile"><i class="fas fa-user me-2"></i>Profile</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="#" id="logoutTop"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Dashboard Content -->
+            <div class="container-fluid p-4" id="dashboard-content">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h3 class="mb-0">Dashboard</h3>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stat-card" style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h3 class="mb-1">1,254</h3>
+                            <p class="mb-0">Today's Sales</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stat-card" style="background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);">
+                            <i class="fas fa-dollar-sign"></i>
+                            <h3 class="mb-1">$8,542</h3>
+                            <p class="mb-0">Today's Revenue</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stat-card" style="background: linear-gradient(135deg, #f46b45 0%, #eea849 100%);">
+                            <i class="fas fa-box-open"></i>
+                            <h3 class="mb-1">24</h3>
+                            <p class="mb-0">Low Stock Items</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="stat-card" style="background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);">
+                            <i class="fas fa-users"></i>
+                            <h3 class="mb-1">156</h3>
+                            <p class="mb-0">New Customers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-center">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn time-frame-btn active" data-timeframe="daily">Daily</button>
+                                        <button type="button" class="btn time-frame-btn" data-timeframe="weekly">Weekly</button>
+                                        <button type="button" class="btn time-frame-btn" data-timeframe="monthly">Monthly</button>
+                                        <button type="button" class="btn time-frame-btn" data-timeframe="yearly">Yearly</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Sales Overview</h5>
+                                <div class="chart-container">
+                                    <canvas id="salesChart" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Revenue Sources</h5>
+                                <div class="chart-container">
+                                    <canvas id="revenueChart" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title mb-0">Recent Transactions</h5>
+                                    <a href="#" class="btn btn-sm btn-primary">View All</a>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Customer</th>
+                                                <th>Date</th>
+                                                <th>Amount</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>#12345</td>
+                                                <td>Bin Salomon</td>
+                                                <td>2023-06-15</td>
+                                                <td>$125.00</td>
+                                                <td><span class="badge bg-success">Completed</span></td>
+                                                <td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>#12344</td>
+                                                <td>Bin Salomon</td>
+                                                <td>2023-06-15</td>
+                                                <td>$89.50</td>
+                                                <td><span class="badge bg-success">Completed</span></td>
+                                                <td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>#12343</td>
+                                                <td>Bin Salomon</td>
+                                                <td>2023-06-14</td>
+                                                <td>$245.75</td>
+                                                <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                                <td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>#12342</td>
+                                                <td>Bin Salomon</td>
+                                                <td>2023-06-14</td>
+                                                <td>$67.30</td>
+                                                <td><span class="badge bg-success">Completed</span></td>
+                                                <td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>#12341</td>
+                                                <td>Bin Salomon</td>
+                                                <td>2023-06-13</td>
+                                                <td>$189.00</td>
+                                                <td><span class="badge bg-danger">Cancelled</span></td>
+                                                <td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid p-4 d-none" id="stores-content">
+                <!-- Stores content will be loaded here -->
+            </div>
+
+            <div class="container-fluid p-4 d-none" id="users-content">
+                <!-- Users content will be loaded here -->
+            </div>
+
+            <div class="container-fluid p-4 d-none" id="categories-content">
+                <!-- Categories content will be loaded here -->
+            </div>
+
+            <div class="container-fluid p-4 d-none" id="products-content">
+                <!-- Products content will be loaded here -->
+            </div>
+
+            <div class="container-fluid p-4 d-none" id="sales-content">
+                <!-- Sales content will be loaded here -->
+            </div>
+
+            <div class="container-fluid p-4 d-none" id="stock-content">
+                <!-- Stock content will be loaded here -->
+            </div>
+
+            <div class="container-fluid p-4 d-none" id="invoices-content">
+                <!-- Invoices content will be loaded here -->
+            </div>
+
+            <div class="container-fluid p-4 d-none" id="reports-content">
+                <!-- Reports content will be loaded here -->
+            </div>
+
+            <div class="container-fluid p-4 d-none" id="debtors-content">
+                <!-- Debtors content will be loaded here -->
+            </div>
+
+            <div class="container-fluid p-4 d-none" id="profile-content">
+                <!-- Profile content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
